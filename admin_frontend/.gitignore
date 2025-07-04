@@ -1,0 +1,61 @@
+# 🔗 Official GitHub guide:
+# Learn more: https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# 📦 Dependencies
+node_modules/
+
+# 🚀 Expo-related
+.expo/
+.expo-shared/
+dist/
+web-build/
+expo-env.d.ts
+
+# 📱 React Native (Native Android/iOS)
+android/.gradle/
+android/.idea/
+android/.cxx/
+android/local.properties
+android/app/build/
+android/build/
+ios/Pods/
+ios/build/
+ios/.xcworkspace
+ios/Podfile.lock
+ios/DerivedData/
+ios/*.xcodeproj/
+
+# 🔐 Secrets & credentials
+*.jks
+*.keystore
+*.p8
+*.p12
+*.key
+*.pem
+*.mobileprovision
+.env
+.env*.local
+
+# 🧹 Metro cache
+.cache/
+metro-cache/
+metro-bundler-cache/
+.metro-health-check*
+
+# 🪲 Debug / logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log
+
+# 🍎 macOS system files
+.DS_Store
+
+# 🧪 TypeScript build
+*.tsbuildinfo
+
+# 🔧 VSCode
+.vscode/
+
+# 📂 Optional: project-specific folders
+app-example/
