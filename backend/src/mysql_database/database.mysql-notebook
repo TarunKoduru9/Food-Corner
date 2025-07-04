@@ -1,0 +1,233 @@
+{
+    "type": "MySQLNotebook",
+    "version": "1.0",
+    "caption": "Script",
+    "content": "use rr_food_corner;\nCREATE TABLE users (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    name VARCHAR(255),\n    email VARCHAR(255) UNIQUE,\n    mobile VARCHAR(20) UNIQUE,\n    password_hash TEXT,\n    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP\n);\nALTER TABLE users ADD COLUMN is_admin BOOLEAN DEFAULT FALSE;\n\nselect * from users; \n\nCREATE TABLE admin_logs (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    admin_id INT,\n    action VARCHAR(255),\n    table_affected VARCHAR(100),\n    record_id INT,\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (admin_id) REFERENCES users(id) ON DELETE SET NULL\n);\nselect * from admin_logs; \n\nCREATE TABLE otp_verifications (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    user_id INT,\n    otp_code VARCHAR(10),\n    expires_at DATETIME,\n    verified BOOLEAN DEFAULT FALSE,\n    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE\n);\nselect * from otp_verifications;\n\nCREATE TABLE addresses (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  user_id INT,\n  house_block_no VARCHAR(255),\n  area_road VARCHAR(255),\n  city VARCHAR(100),\n  district VARCHAR(100),\n  state VARCHAR(100),\n  country VARCHAR(100),\n  pincode VARCHAR(20),\n  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE\n);\nselect * from addresses;\n\n\nCREATE TABLE categories (\n    id INT AUTO_INCREMENT PRIMARY KEY,\n    name VARCHAR(100) UNIQUE,\n    image_url VARCHAR(225)\n);\nSELECT * from categories;\n\n\nCREATE TABLE food_items (\n\tid int AUTO_INCREMENT primary key,\n\titem_code varchar(10) unique key,\n\tname varchar(100),\n    category_id INT,\n\tcategory varchar(50),\n\tfood_type varchar(50),\n\tcombo_type varchar(50),\n\tprice decimal(10,2),\n  subcontent VARCHAR(225),\n  image_url VARCHAR(225),\n  FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE\n);\n\n\n\nALTER TABLE food_items \nADD COLUMN category_id INT,\nADD FOREIGN KEY (category_id) REFERENCES categories(id);\nselect * from food_items;\n\nCREATE TABLE order_status (\n\tid INT AUTO_INCREMENT PRIMARY KEY,\n\tuser_id INT,\n\titems JSON,\n\tsubtotal DECIMAL(10,2),\n\tdiscount DECIMAL(10,2),\n\tdelivery_charge DECIMAL(10,2),\n\ttaxes DECIMAL(10,2),\n\tcreated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);\nALTER TABLE order_status \nADD COLUMN status VARCHAR(50) DEFAULT 'pending',\nADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;\n\nselect * from order_status;\n\ndrop table categories;\t\n",
+    "options": {
+        "tabSize": 4,
+        "indentSize": 4,
+        "insertSpaces": true,
+        "defaultEOL": "LF",
+        "trimAutoWhitespace": true
+    },
+    "viewState": {
+        "cursorState": [
+            {
+                "inSelectionMode": false,
+                "selectionStart": {
+                    "lineNumber": 15,
+                    "column": 26
+                },
+                "position": {
+                    "lineNumber": 15,
+                    "column": 26
+                }
+            }
+        ],
+        "viewState": {
+            "scrollLeft": 0,
+            "firstPosition": {
+                "lineNumber": 70,
+                "column": 1
+            },
+            "firstPositionDeltaTop": -20
+        },
+        "contributionsState": {
+            "editor.contrib.folding": {},
+            "editor.contrib.wordHighlighter": false
+        }
+    },
+    "contexts": [
+        {
+            "state": {
+                "start": 1,
+                "end": 98,
+                "language": "mysql",
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 19
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 19,
+                            "length": 301
+                        },
+                        "contentStart": 20,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 320,
+                            "length": 61
+                        },
+                        "contentStart": 321,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 381,
+                            "length": 22
+                        },
+                        "contentStart": 383,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 403,
+                            "length": 284
+                        },
+                        "contentStart": 406,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 687,
+                            "length": 26
+                        },
+                        "contentStart": 688,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 713,
+                            "length": 246
+                        },
+                        "contentStart": 716,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 959,
+                            "length": 33
+                        },
+                        "contentStart": 960,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 992,
+                            "length": 365
+                        },
+                        "contentStart": 994,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 1357,
+                            "length": 25
+                        },
+                        "contentStart": 1358,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 1382,
+                            "length": 127
+                        },
+                        "contentStart": 1385,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 1509,
+                            "length": 26
+                        },
+                        "contentStart": 1510,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 1535,
+                            "length": 362
+                        },
+                        "contentStart": 1538,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 1897,
+                            "length": 112
+                        },
+                        "contentStart": 1901,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 2009,
+                            "length": 26
+                        },
+                        "contentStart": 2010,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 2035,
+                            "length": 247
+                        },
+                        "contentStart": 2037,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 2282,
+                            "length": 162
+                        },
+                        "contentStart": 2283,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 2444,
+                            "length": 29
+                        },
+                        "contentStart": 2446,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 2473,
+                            "length": 24
+                        },
+                        "contentStart": 2476,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 2497,
+                            "length": 2
+                        },
+                        "contentStart": 2496,
+                        "state": 3
+                    }
+                ]
+            },
+            "data": []
+        }
+    ]
+}
