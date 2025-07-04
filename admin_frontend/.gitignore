@@ -4,6 +4,8 @@
 # 📦 Dependencies
 node_modules/
 
+admin_frontend/build/
+
 # 🚀 Expo-related
 .expo/
 .expo-shared/
